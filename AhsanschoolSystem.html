@@ -1,0 +1,812 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Ahsan School System - Excellence in Education Since 2012</title>
+    <script src="https://cdn.tailwindcss.com"></script>
+    <script>
+        tailwind.config = {
+            theme: {
+                extend: {
+                    colors: {
+                        'navy': '#2C3E50',
+                        'sky': '#3498DB',
+                        'bright-yellow': '#F1C40F',
+                        'light-grey': '#ECF0F1'
+                    }
+                }
+            }
+        }
+    </script>
+    <style>
+        @import url('https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800&display=swap');
+
+        * {
+            font-family: 'Inter', sans-serif;
+        }
+
+        .fade-in {
+            opacity: 0;
+            transform: translateY(30px);
+            transition: all 0.8s ease;
+        }
+
+        .fade-in.visible {
+            opacity: 1;
+            transform: translateY(0);
+        }
+
+        .slide-in-left {
+            opacity: 0;
+            transform: translateX(-50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-left.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .slide-in-right {
+            opacity: 0;
+            transform: translateX(50px);
+            transition: all 0.8s ease;
+        }
+
+        .slide-in-right.visible {
+            opacity: 1;
+            transform: translateX(0);
+        }
+
+        .hero-bg {
+            background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
+        }
+
+        .card-hover {
+            transition: all 0.3s ease;
+        }
+
+        .card-hover:hover {
+            transform: translateY(-10px);
+            box-shadow: 0 20px 40px rgba(44, 62, 80, 0.15);
+        }
+
+        .nav-link {
+            position: relative;
+            transition: all 0.3s ease;
+        }
+
+        .nav-link::after {
+            content: '';
+            position: absolute;
+            width: 0;
+            height: 2px;
+            bottom: -5px;
+            left: 0;
+            background-color: #F1C40F;
+            transition: width 0.3s ease;
+        }
+
+        .nav-link:hover::after {
+            width: 100%;
+        }
+
+        .mobile-menu {
+            transform: translateX(100%);
+            transition: transform 0.3s ease;
+        }
+
+        .mobile-menu.open {
+            transform: translateX(0);
+        }
+
+        .counter {
+            font-size: 2.5rem;
+            font-weight: 700;
+            color: #3498DB;
+        }
+
+        @keyframes float {
+
+            0%,
+            100% {
+                transform: translateY(0px);
+            }
+
+            50% {
+                transform: translateY(-20px);
+            }
+        }
+
+        .float-animation {
+            animation: float 3s ease-in-out infinite;
+        }
+
+        .gradient-text {
+            background: linear-gradient(135deg, #2C3E50 0%, #3498DB 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+            background-clip: text;
+        }
+
+        .pef-badge {
+            background: linear-gradient(45deg, #F1C40F, #F39C12);
+            animation: pulse 2s infinite;
+        }
+
+        @keyframes pulse {
+
+            0%,
+            100% {
+                transform: scale(1);
+            }
+
+            50% {
+                transform: scale(1.05);
+            }
+        }
+
+        .news-card {
+            background: white;
+            border-left: 4px solid #3498DB;
+            transition: all 0.3s ease;
+        }
+
+        .news-card:hover {
+            border-left-color: #F1C40F;
+            transform: translateX(5px);
+        }
+    </style>
+</head>
+
+<body class="bg-light-grey">
+    <!-- Navigation -->
+    <nav class="bg-white shadow-lg fixed w-full top-0 z-50">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="flex justify-between items-center h-16">
+                <!-- Logo/School Name -->
+                <div class="flex items-center">
+                    <div class="flex-shrink-0 flex items-center">
+                        <div class="w-10 h-10 bg-navy rounded-lg flex items-center justify-center mr-3">
+                            <svg class="w-6 h-6 text-bright-yellow" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h1 class="text-xl font-bold text-navy">Ahsan School System</h1>
+                            <p class="text-xs text-gray-500">Est. 2012</p>
+                        </div>
+                    </div>
+                </div>
+
+                <!-- Desktop Menu -->
+                <div class="hidden md:block">
+                    <div class="ml-10 flex items-baseline space-x-8">
+                        <a href="#home" class="nav-link text-navy hover:text-sky px-3 py-2 text-sm font-medium">Home</a>
+                        <a href="#about"
+                            class="nav-link text-navy hover:text-sky px-3 py-2 text-sm font-medium">About</a>
+                        <a href="#news" class="nav-link text-navy hover:text-sky px-3 py-2 text-sm font-medium">News</a>
+                        <a href="#contact"
+                            class="nav-link text-navy hover:text-sky px-3 py-2 text-sm font-medium">Contact</a>
+                        <button
+                            class="bg-sky hover:bg-navy text-white px-4 py-2 rounded-lg transition duration-300 font-medium">Portal</button>
+                    </div>
+                </div>
+
+                <!-- Mobile menu button -->
+                <div class="md:hidden">
+                    <button id="mobile-menu-btn" class="text-navy hover:text-sky focus:outline-none">
+                        <svg class="h-6 w-6" fill="none" viewBox="0 0 24 24" stroke="currentColor">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                                d="M4 6h16M4 12h16M4 18h16"></path>
+                        </svg>
+                    </button>
+                </div>
+            </div>
+        </div>
+
+        <!-- Mobile Menu -->
+        <div id="mobile-menu" class="mobile-menu md:hidden fixed top-16 right-0 w-64 h-full bg-white shadow-lg">
+            <div class="px-2 pt-2 pb-3 space-y-1">
+                <a href="#home" class="block px-3 py-2 text-navy hover:text-sky font-medium">Home</a>
+                <a href="#about" class="block px-3 py-2 text-navy hover:text-sky font-medium">About</a>
+                <a href="#news" class="block px-3 py-2 text-navy hover:text-sky font-medium">News</a>
+                <a href="#contact" class="block px-3 py-2 text-navy hover:text-sky font-medium">Contact</a>
+                <button
+                    class="w-full text-left bg-sky hover:bg-navy text-white px-3 py-2 rounded-lg transition duration-300 mt-4 font-medium">Portal</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- Hero Section -->
+    <section id="home" class="hero-bg pt-16 min-h-screen flex items-center">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center">
+                <div class="fade-in">
+                    <div class="pef-badge inline-flex items-center px-4 py-2 rounded-full text-navy font-semibold mb-6">
+                        <span class="text-sm">🏆 Punjab Education Foundation (PEF) Approved</span>
+                    </div>
+                    <h1 class="text-4xl md:text-6xl font-bold text-white mb-6">
+                        Quality Education for <span class="text-bright-yellow">Everyone</span>
+                    </h1>
+                    <p class="text-xl text-gray-200 mb-8 leading-relaxed">
+                        Providing free, quality education since 2012 at 15-G Road, Chishtian. Join our community of 800+
+                        students and experience excellence in learning with Quran education and experienced faculty.
+                    </p>
+                    <div class="flex flex-col sm:flex-row gap-4">
+                        <button
+                            class="bg-bright-yellow hover:bg-yellow-500 text-navy px-8 py-3 rounded-lg font-semibold transition duration-300 transform hover:scale-105">
+                            Enroll Now - FREE
+                        </button>
+                        <button
+                            class="border-2 border-white text-white hover:bg-white hover:text-navy px-8 py-3 rounded-lg font-semibold transition duration-300">
+                            Learn More
+                        </button>
+                    </div>
+                </div>
+                <div class="slide-in-right">
+                    <div class="float-animation">
+                        <svg class="w-full h-96" viewBox="0 0 400 300" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- School Building -->
+                            <rect x="50" y="120" width="300" height="150" fill="#ffffff" stroke="#ECF0F1"
+                                stroke-width="3" />
+                            <!-- Windows -->
+                            <rect x="70" y="140" width="35" height="35" fill="#3498DB" stroke="#2C3E50"
+                                stroke-width="2" />
+                            <rect x="120" y="140" width="35" height="35" fill="#3498DB" stroke="#2C3E50"
+                                stroke-width="2" />
+                            <rect x="170" y="140" width="35" height="35" fill="#3498DB" stroke="#2C3E50"
+                                stroke-width="2" />
+                            <rect x="220" y="140" width="35" height="35" fill="#3498DB" stroke="#2C3E50"
+                                stroke-width="2" />
+                            <rect x="270" y="140" width="35" height="35" fill="#3498DB" stroke="#2C3E50"
+                                stroke-width="2" />
+                            <!-- Door -->
+                            <rect x="170" y="200" width="60" height="70" fill="#F1C40F" stroke="#2C3E50"
+                                stroke-width="2" />
+                            <circle cx="215" cy="235" r="3" fill="#2C3E50" />
+                            <!-- Roof -->
+                            <polygon points="40,120 200,60 360,120" fill="#2C3E50" />
+                            <!-- Flag -->
+                            <rect x="320" y="80" width="3" height="40" fill="#2C3E50" />
+                            <rect x="323" y="80" width="25" height="15" fill="#27AE60" />
+                            <!-- Students -->
+                            <g class="float-animation">
+                                <circle cx="100" cy="290" r="8" fill="#F4D03F" />
+                                <rect x="95" y="298" width="10" height="20" fill="#3498DB" />
+                                <circle cx="150" cy="290" r="8" fill="#F4D03F" />
+                                <rect x="145" y="298" width="10" height="20" fill="#E74C3C" />
+                                <circle cx="200" cy="290" r="8" fill="#F4D03F" />
+                                <rect x="195" y="298" width="10" height="20" fill="#27AE60" />
+                                <circle cx="250" cy="290" r="8" fill="#F4D03F" />
+                                <rect x="245" y="298" width="10" height="20" fill="#9B59B6" />
+                            </g>
+                            <!-- Books -->
+                            <rect x="280" y="200" width="15" height="20" fill="#E74C3C" />
+                            <rect x="295" y="195" width="15" height="20" fill="#3498DB" />
+                            <rect x="310" y="190" width="15" height="20" fill="#27AE60" />
+                            <!-- Sun -->
+                            <circle cx="350" cy="40" r="20" fill="#F1C40F" />
+                            <path
+                                d="M350 10 L350 20 M370 40 L360 40 M330 40 L340 40 M350 60 L350 70 M365 25 L360 30 M335 25 L340 30 M365 55 L360 50 M335 55 L340 50"
+                                stroke="#F39C12" stroke-width="2" />
+                        </svg>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Stats Section -->
+    <section class="bg-white py-16">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-2 md:grid-cols-4 gap-8 text-center">
+                <div class="fade-in">
+                    <div class="counter" data-target="800">0</div>
+                    <p class="text-navy font-medium">Students</p>
+                    <p class="text-xs text-gray-500">Currently Enrolled</p>
+                </div>
+                <div class="fade-in">
+                    <div class="counter" data-target="40">0</div>
+                    <p class="text-navy font-medium">Staff Members</p>
+                    <p class="text-xs text-gray-500">Experienced Faculty</p>
+                </div>
+                <div class="fade-in">
+                    <div class="counter" data-target="12">0</div>
+                    <p class="text-navy font-medium">Years</p>
+                    <p class="text-xs text-gray-500">Since 2012</p>
+                </div>
+                <div class="fade-in">
+                    <div class="counter" data-target="100">0</div>
+                    <p class="text-navy font-medium">Free Education</p>
+                    <p class="text-xs text-gray-500">% Coverage</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- About Section -->
+    <section id="about" class="py-20 bg-light-grey">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-navy mb-4">About Ahsan School System</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Committed to providing quality education under Punjab Education Foundation since 2012
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12 items-center mb-16">
+                <div class="slide-in-left">
+                    <div class="bg-white rounded-2xl shadow-xl p-8">
+                        <svg class="w-full h-64" viewBox="0 0 300 200" fill="none" xmlns="http://www.w3.org/2000/svg">
+                            <!-- Classroom scene with teacher and students -->
+                            <rect x="20" y="40" width="260" height="140" fill="#ECF0F1" stroke="#BDC3C7"
+                                stroke-width="2" />
+                            <!-- Blackboard -->
+                            <rect x="40" y="60" width="100" height="60" fill="#2C3E50" />
+                            <text x="90" y="85" fill="#F1C40F" font-size="12" text-anchor="middle">القرآن</text>
+                            <text x="90" y="100" fill="#F1C40F" font-size="8" text-anchor="middle">Quran
+                                Education</text>
+                            <!-- Teacher -->
+                            <circle cx="90" cy="140" r="12" fill="#F4D03F" />
+                            <rect x="82" y="152" width="16" height="25" fill="#2C3E50" />
+                            <!-- Students sitting -->
+                            <circle cx="160" cy="150" r="8" fill="#F4D03F" />
+                            <rect x="155" y="158" width="10" height="15" fill="#3498DB" />
+                            <circle cx="190" cy="150" r="8" fill="#F4D03F" />
+                            <rect x="185" y="158" width="10" height="15" fill="#E74C3C" />
+                            <circle cx="220" cy="150" r="8" fill="#F4D03F" />
+                            <rect x="215" y="158" width="10" height="15" fill="#27AE60" />
+                            <!-- Books on desk -->
+                            <rect x="150" y="170" width="8" height="10" fill="#E74C3C" />
+                            <rect x="180" y="170" width="8" height="10" fill="#3498DB" />
+                            <rect x="210" y="170" width="8" height="10" fill="#27AE60" />
+                            <!-- PEF Logo -->
+                            <circle cx="250" cy="70" r="15" fill="#F1C40F" />
+                            <text x="250" y="75" fill="#2C3E50" font-size="8" text-anchor="middle">PEF</text>
+                        </svg>
+                    </div>
+                </div>
+                <div class="slide-in-right">
+                    <h3 class="text-3xl font-bold text-navy mb-6">Our Mission & Vision</h3>
+                    <p class="text-lg text-gray-600 mb-6 leading-relaxed">
+                        Located at 15-G Road, Chishtian, Ahsan School System has been a beacon of free, quality
+                        education since 2012. We are proud to be approved by the Punjab Education Foundation (PEF),
+                        ensuring our commitment to educational excellence.
+                    </p>
+                    <p class="text-lg text-gray-600 mb-8 leading-relaxed">
+                        With 800+ students and 40+ experienced staff members, we provide comprehensive education that
+                        includes Quran studies, free Punjab Board books, and a nurturing environment for holistic
+                        development.
+                    </p>
+                    <div class="space-y-4">
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-sky rounded-full flex items-center justify-center mr-4">
+                                <span class="text-white text-sm">📚</span>
+                            </div>
+                            <span class="text-navy font-medium">Free Punjab Board Books</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-sky rounded-full flex items-center justify-center mr-4">
+                                <span class="text-white text-sm">🕌</span>
+                            </div>
+                            <span class="text-navy font-medium">Quran Education Integrated</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-sky rounded-full flex items-center justify-center mr-4">
+                                <span class="text-white text-sm">👨‍🏫</span>
+                            </div>
+                            <span class="text-navy font-medium">Highly Experienced Teachers</span>
+                        </div>
+                        <div class="flex items-center">
+                            <div class="w-8 h-8 bg-sky rounded-full flex items-center justify-center mr-4">
+                                <span class="text-white text-sm">🏆</span>
+                            </div>
+                            <span class="text-navy font-medium">PEF Approved Institution</span>
+                        </div>
+                    </div>
+                </div>
+            </div>
+
+            <!-- Features Grid -->
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="card-hover bg-white rounded-xl shadow-lg p-8 border-l-4 border-sky fade-in">
+                    <div class="w-16 h-16 bg-sky bg-opacity-10 rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-3xl">💰</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy mb-4">100% Free Education</h3>
+                    <p class="text-gray-600">Complete free education under Punjab Education Foundation, making quality
+                        learning accessible to all students regardless of economic background.</p>
+                </div>
+
+                <div class="card-hover bg-white rounded-xl shadow-lg p-8 border-l-4 border-bright-yellow fade-in">
+                    <div
+                        class="w-16 h-16 bg-bright-yellow bg-opacity-10 rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-3xl">📖</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy mb-4">Islamic Education</h3>
+                    <p class="text-gray-600">Comprehensive Quran education integrated with modern curriculum, fostering
+                        both academic excellence and spiritual development.</p>
+                </div>
+
+                <div class="card-hover bg-white rounded-xl shadow-lg p-8 border-l-4 border-navy fade-in">
+                    <div class="w-16 h-16 bg-navy bg-opacity-10 rounded-lg flex items-center justify-center mb-6">
+                        <span class="text-3xl">👥</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy mb-4">Expert Faculty</h3>
+                    <p class="text-gray-600">40+ highly experienced and qualified teachers dedicated to nurturing young
+                        minds and ensuring academic success.</p>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- News Section -->
+    <section id="news" class="py-20 bg-white">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-navy mb-4">Latest News & Updates</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Stay updated with the latest happenings at Ahsan School System
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+                <div class="news-card rounded-xl shadow-lg p-6 fade-in">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-sky text-white px-3 py-1 rounded-full text-sm font-medium">Admission</span>
+                        <span class="text-gray-500 text-sm ml-3">Dec 15, 2024</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy mb-3">New Admissions Open for 2025</h3>
+                    <p class="text-gray-600 mb-4">Free admissions are now open for all classes. Join our community of
+                        800+ students and experience quality education.</p>
+                    <a href="#" class="text-sky hover:text-navy font-medium transition duration-300">Read More →</a>
+                </div>
+
+                <div class="news-card rounded-xl shadow-lg p-6 fade-in">
+                    <div class="flex items-center mb-4">
+                        <span
+                            class="bg-bright-yellow text-navy px-3 py-1 rounded-full text-sm font-medium">Achievement</span>
+                        <span class="text-gray-500 text-sm ml-3">Dec 10, 2024</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy mb-3">Excellent Board Results 2024</h3>
+                    <p class="text-gray-600 mb-4">Our students achieved outstanding results in Punjab Board examinations
+                        with 95% pass rate and multiple position holders.</p>
+                    <a href="#" class="text-sky hover:text-navy font-medium transition duration-300">Read More →</a>
+                </div>
+
+                <div class="news-card rounded-xl shadow-lg p-6 fade-in">
+                    <div class="flex items-center mb-4">
+                        <span class="bg-navy text-white px-3 py-1 rounded-full text-sm font-medium">Event</span>
+                        <span class="text-gray-500 text-sm ml-3">Dec 5, 2024</span>
+                    </div>
+                    <h3 class="text-xl font-bold text-navy mb-3">Annual Sports Day Celebration</h3>
+                    <p class="text-gray-600 mb-4">Students showcased their athletic talents in our annual sports day,
+                        promoting physical fitness and team spirit.</p>
+                    <a href="#" class="text-sky hover:text-navy font-medium transition duration-300">Read More →</a>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Contact Section -->
+    <section id="contact" class="py-20 bg-light-grey">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="text-center mb-16 fade-in">
+                <h2 class="text-4xl font-bold text-navy mb-4">Contact Us</h2>
+                <p class="text-xl text-gray-600 max-w-3xl mx-auto">
+                    Get in touch with us for admissions, inquiries, or any information about our school
+                </p>
+            </div>
+
+            <div class="grid grid-cols-1 lg:grid-cols-2 gap-12">
+                <div class="slide-in-left">
+                    <div class="bg-white rounded-2xl shadow-xl p-8">
+                        <h3 class="text-2xl font-bold text-navy mb-6">Get In Touch</h3>
+
+                        <div class="space-y-6">
+                            <div class="flex items-start">
+                                <div
+                                    class="w-12 h-12 bg-sky bg-opacity-10 rounded-lg flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-sky" fill="currentColor" viewBox="0 0 20 20">
+                                        <path fill-rule="evenodd"
+                                            d="M5.05 4.05a7 7 0 119.9 9.9L10 18.9l-4.95-4.95a7 7 0 010-9.9zM10 11a2 2 0 100-4 2 2 0 000 4z"
+                                            clip-rule="evenodd"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-navy">Address</h4>
+                                    <p class="text-gray-600">15-G Road, Chishtian</p>
+                                    <p class="text-gray-600">Punjab, Pakistan</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div
+                                    class="w-12 h-12 bg-bright-yellow bg-opacity-10 rounded-lg flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-bright-yellow" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M2 3a1 1 0 011-1h2.153a1 1 0 01.986.836l.74 4.435a1 1 0 01-.54 1.06l-1.548.773a11.037 11.037 0 006.105 6.105l.774-1.548a1 1 0 011.059-.54l4.435.74a1 1 0 01.836.986V17a1 1 0 01-1 1h-2C7.82 18 2 12.18 2 5V3z">
+                                        </path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-navy">Phone</h4>
+                                    <p class="text-gray-600">+92 XXX XXXXXXX</p>
+                                    <p class="text-gray-600">Available: 8:00 AM - 3:00 PM</p>
+                                </div>
+                            </div>
+
+                            <div class="flex items-start">
+                                <div
+                                    class="w-12 h-12 bg-navy bg-opacity-10 rounded-lg flex items-center justify-center mr-4">
+                                    <svg class="w-6 h-6 text-navy" fill="currentColor" viewBox="0 0 20 20">
+                                        <path
+                                            d="M2.003 5.884L10 9.882l7.997-3.998A2 2 0 0016 4H4a2 2 0 00-1.997 1.884z">
+                                        </path>
+                                        <path d="M18 8.118l-8 4-8-4V14a2 2 0 002 2h12a2 2 0 002-2V8.118z"></path>
+                                    </svg>
+                                </div>
+                                <div>
+                                    <h4 class="font-semibold text-navy">Email</h4>
+                                    <p class="text-gray-600">info@ahsanschool.edu.pk</p>
+                                    <p class="text-gray-600">admissions@ahsanschool.edu.pk</p>
+                                </div>
+                            </div>
+
+                            <div class="bg-sky bg-opacity-5 rounded-lg p-4 border border-sky border-opacity-20">
+                                <h4 class="font-semibold text-navy mb-2">🏆 PEF Approved School</h4>
+                                <p class="text-sm text-gray-600">Recognized by Punjab Education Foundation for quality
+                                    education standards and free education provision.</p>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="slide-in-right">
+                    <form class="bg-white rounded-2xl shadow-xl p-8 space-y-6" id="contact-form">
+                        <div>
+                            <label class="block text-sm font-medium text-navy mb-2">Student/Parent Name</label>
+                            <input type="text"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky focus:border-transparent transition duration-200"
+                                placeholder="Enter full name" required>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-navy mb-2">Contact Number</label>
+                            <input type="tel"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky focus:border-transparent transition duration-200"
+                                placeholder="Enter phone number" required>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-navy mb-2">Email Address</label>
+                            <input type="email"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky focus:border-transparent transition duration-200"
+                                placeholder="Enter email address">
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-navy mb-2">Inquiry Type</label>
+                            <select
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky focus:border-transparent transition duration-200">
+                                <option>New Admission Inquiry</option>
+                                <option>Academic Information</option>
+                                <option>Fee Structure</option>
+                                <option>School Facilities</option>
+                                <option>General Question</option>
+                            </select>
+                        </div>
+
+                        <div>
+                            <label class="block text-sm font-medium text-navy mb-2">Message</label>
+                            <textarea rows="4"
+                                class="w-full px-4 py-3 border border-gray-300 rounded-lg focus:ring-2 focus:ring-sky focus:border-transparent transition duration-200"
+                                placeholder="Please describe your inquiry..."></textarea>
+                        </div>
+
+                        <button type="submit"
+                            class="w-full bg-sky hover:bg-navy text-white py-3 px-6 rounded-lg font-semibold transition duration-300 transform hover:scale-105">
+                            Send Message
+                        </button>
+
+                        <p class="text-sm text-gray-500 text-center">
+                            💡 <strong>Remember:</strong> Education is completely FREE at Ahsan School System under PEF
+                        </p>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </section>
+
+    <!-- Footer -->
+    <footer class="bg-navy text-white py-12">
+        <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+            <div class="grid grid-cols-1 md:grid-cols-4 gap-8">
+                <div>
+                    <div class="flex items-center mb-4">
+                        <div class="w-10 h-10 bg-bright-yellow rounded-lg flex items-center justify-center mr-3">
+                            <svg class="w-6 h-6 text-navy" fill="currentColor" viewBox="0 0 20 20">
+                                <path
+                                    d="M10.394 2.08a1 1 0 00-.788 0l-7 3a1 1 0 000 1.84L5.25 8.051a.999.999 0 01.356-.257l4-1.714a1 1 0 11.788 1.838L7.667 9.088l1.94.831a1 1 0 00.787 0l7-3a1 1 0 000-1.838l-7-3zM3.31 9.397L5 10.12v4.102a8.969 8.969 0 00-1.05-.174 1 1 0 01-.89-.89 11.115 11.115 0 01.25-3.762zM9.3 16.573A9.026 9.026 0 007 14.935v-3.957l1.818.78a3 3 0 002.364 0l5.508-2.361a11.026 11.026 0 01.25 3.762 1 1 0 01-.89.89 8.968 8.968 0 00-5.35 2.524 1 1 0 01-1.4 0zM6 18a1 1 0 001-1v-2.065a8.935 8.935 0 00-2-.712V17a1 1 0 001 1z">
+                                </path>
+                            </svg>
+                        </div>
+                        <div>
+                            <h3 class="text-xl font-bold">Ahsan School System</h3>
+                            <p class="text-bright-yellow text-sm">Est. 2012 • PEF Approved</p>
+                        </div>
+                    </div>
+                    <p class="text-gray-300 mb-4">Providing free, quality education with Islamic values since 2012.
+                        Building tomorrow's leaders today.</p>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-bright-yellow">Quick Links</h4>
+                    <ul class="space-y-2">
+                        <li><a href="#home"
+                                class="text-gray-300 hover:text-bright-yellow transition duration-300">Home</a></li>
+                        <li><a href="#about"
+                                class="text-gray-300 hover:text-bright-yellow transition duration-300">About Us</a></li>
+                        <li><a href="#news" class="text-gray-300 hover:text-bright-yellow transition duration-300">News
+                                & Updates</a></li>
+                        <li><a href="#contact"
+                                class="text-gray-300 hover:text-bright-yellow transition duration-300">Contact</a></li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-bright-yellow">Our Features</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>✅ 100% Free Education</li>
+                        <li>✅ Quran Education</li>
+                        <li>✅ Free Punjab Board Books</li>
+                        <li>✅ Experienced Faculty</li>
+                    </ul>
+                </div>
+
+                <div>
+                    <h4 class="text-lg font-semibold mb-4 text-bright-yellow">Contact Info</h4>
+                    <ul class="space-y-2 text-gray-300">
+                        <li>📍 15-G Road, Chishtian</li>
+                        <li>📞 +92 XXX XXXXXXX</li>
+                        <li>✉️ info@ahsanschool.edu.pk</li>
+                        <li>🕒 Mon-Fri: 8AM-3PM</li>
+                    </ul>
+                </div>
+            </div>
+
+            <div class="border-t border-gray-700 mt-8 pt-8 text-center">
+                <p class="text-gray-300">&copy; 2024 Ahsan School System. All rights reserved. | 🏆 Punjab Education
+                    Foundation (PEF) Approved Institution</p>
+            </div>
+        </div>
+    </footer>
+
+    <script>
+        // Mobile menu toggle
+        const mobileMenuBtn = document.getElementById('mobile-menu-btn');
+        const mobileMenu = document.getElementById('mobile-menu');
+
+        mobileMenuBtn.addEventListener('click', () => {
+            mobileMenu.classList.toggle('open');
+        });
+
+        // Close mobile menu when clicking on links
+        const mobileLinks = mobileMenu.querySelectorAll('a');
+        mobileLinks.forEach(link => {
+            link.addEventListener('click', () => {
+                mobileMenu.classList.remove('open');
+            });
+        });
+
+        // Smooth scrolling for navigation links
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                const target = document.querySelector(this.getAttribute('href'));
+                if (target) {
+                    target.scrollIntoView({
+                        behavior: 'smooth',
+                        block: 'start'
+                    });
+                }
+            });
+        });
+
+        // Intersection Observer for animations
+        const observerOptions = {
+            threshold: 0.1,
+            rootMargin: '0px 0px -50px 0px'
+        };
+
+        const observer = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    entry.target.classList.add('visible');
+                }
+            });
+        }, observerOptions);
+
+        // Observe all animation elements
+        document.querySelectorAll('.fade-in, .slide-in-left, .slide-in-right').forEach(el => {
+            observer.observe(el);
+        });
+
+        // Counter animation
+        function animateCounter(element, target) {
+            let current = 0;
+            const increment = target / 100;
+            const timer = setInterval(() => {
+                current += increment;
+                if (current >= target) {
+                    current = target;
+                    clearInterval(timer);
+                }
+                element.textContent = Math.floor(current);
+            }, 20);
+        }
+
+        // Start counter animation when visible
+        const counterObserver = new IntersectionObserver((entries) => {
+            entries.forEach(entry => {
+                if (entry.isIntersecting) {
+                    const counter = entry.target;
+                    const target = parseInt(counter.getAttribute('data-target'));
+                    animateCounter(counter, target);
+                    counterObserver.unobserve(counter);
+                }
+            });
+        }, observerOptions);
+
+        document.querySelectorAll('.counter').forEach(counter => {
+            counterObserver.observe(counter);
+        });
+
+        // Contact form submission
+        document.getElementById('contact-form').addEventListener('submit', function (e) {
+            e.preventDefault();
+
+            // Show success message
+            const button = this.querySelector('button[type="submit"]');
+            const originalText = button.textContent;
+            button.textContent = 'Message Sent Successfully!';
+            button.classList.add('bg-green-600', 'hover:bg-green-700');
+            button.classList.remove('bg-sky', 'hover:bg-navy');
+
+            // Reset form
+            this.reset();
+
+            // Reset button after 3 seconds
+            setTimeout(() => {
+                button.textContent = originalText;
+                button.classList.remove('bg-green-600', 'hover:bg-green-700');
+                button.classList.add('bg-sky', 'hover:bg-navy');
+            }, 3000);
+        });
+
+        // Add scroll effect to navigation
+        window.addEventListener('scroll', () => {
+            const nav = document.querySelector('nav');
+            if (window.scrollY > 100) {
+                nav.classList.add('shadow-xl');
+            } else {
+                nav.classList.remove('shadow-xl');
+            }
+        });
+
+        // Close mobile menu when clicking outside
+        document.addEventListener('click', (e) => {
+            if (!mobileMenu.contains(e.target) && !mobileMenuBtn.contains(e.target)) {
+                mobileMenu.classList.remove('open');
+            }
+        });
+    </script>
+    <script>(function () { function c() { var b = a.contentDocument || a.contentWindow.document; if (b) { var d = b.createElement('script'); d.innerHTML = "window.__CF$cv$params={r:'9655e23a25a7e89f',t:'MTc1MzU1Mzc0MC4wMDAwMDA='};var a=document.createElement('script');a.nonce='';a.src='/cdn-cgi/challenge-platform/scripts/jsd/main.js';document.getElementsByTagName('head')[0].appendChild(a);"; b.getElementsByTagName('head')[0].appendChild(d) } } if (document.body) { var a = document.createElement('iframe'); a.height = 1; a.width = 1; a.style.position = 'absolute'; a.style.top = 0; a.style.left = 0; a.style.border = 'none'; a.style.visibility = 'hidden'; document.body.appendChild(a); if ('loading' !== document.readyState) c(); else if (window.addEventListener) document.addEventListener('DOMContentLoaded', c); else { var e = document.onreadystatechange || function () { }; document.onreadystatechange = function (b) { e(b); 'loading' !== document.readyState && (document.onreadystatechange = e, c()) } } } })();</script>
+</body>
+
+</html>
